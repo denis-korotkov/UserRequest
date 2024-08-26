@@ -7,6 +7,22 @@ use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
 use App\Services\AuthService;
 
+/**
+ * @OA\Get(
+ *      path="/login",
+ *      operationId="getLogin",
+ *      summary="Login",
+ *      description="Login",
+ *      @OA\Response(
+ *          response=200,
+ *          description="Successful login",
+ *       ),
+ *      @OA\Response(
+ *          response=401,
+ *          description="Unauthenticated",
+ *      ),
+ *     )
+ */
 class AuthController extends Controller
 {
     public function login(LoginRequest $loginRequest)
@@ -14,7 +30,7 @@ class AuthController extends Controller
         $credentials = $loginRequest->validated();
 
         if (!$token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Unauthenticated'], 401);
         }
 
         return $this->respondWithToken($token);
