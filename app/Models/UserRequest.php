@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\UserScope;
+use App\Services\AuthService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -19,6 +21,11 @@ class UserRequest extends Model
         'request',
         'user_id',
     ];
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new UserScope(app(AuthService::class)));
+    }
 
     public function user(): HasOne
     {
