@@ -11,12 +11,12 @@ class UserRoleCachedRepository implements UserRoleRepositoryInterface
     const ALL_CACHE_KEY = 'all';
 
     /**
-     * @param string $cacheTimeSeconds
+     * @param int $cacheTimeSeconds
      * @param string $cachePrefix
      * @param UserRoleRepositoryInterface $userRoleRepository
      */
     public function __construct(
-        protected readonly string                      $cacheTimeSeconds,
+        protected readonly int                      $cacheTimeSeconds,
         protected readonly string                      $cachePrefix,
         protected readonly UserRoleRepositoryInterface $userRoleRepository
 
