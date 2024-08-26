@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
-use AuthService;
-use Requests\RegistrationRequest;
+use App\Services\AuthService;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(LoginRequest $loginRequest)
     {
-        $credentials = request(['email', 'password']);
+        $credentials = $loginRequest->validated();
 
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -20,7 +21,7 @@ class AuthController extends Controller
     }
 
 
-    public function registration(AuthService $authService, RegistrationRequest $registrationRequest)
+    public function registration(RegistrationRequest $registrationRequest, AuthService $authService)
     {
         $data = $registrationRequest->validated();
         $authService->register($data);
