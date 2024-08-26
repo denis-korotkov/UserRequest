@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use AuthService;
+use Requests\RegistrationRequest;
 
 class AuthController extends Controller
 {
@@ -19,15 +20,12 @@ class AuthController extends Controller
     }
 
 
-    public function registration(AuthService $authService)
+    public function registration(AuthService $authService, RegistrationRequest $registrationRequest)
     {
-        $name = request('name');
-        $email = request('email');
-        $password = request('password');
+        $data = $registrationRequest->validated();
+        $authService->register($data);
 
-        $authService->register();
-
-        return redirect('login');
+        return response('ok');
     }
 
 
