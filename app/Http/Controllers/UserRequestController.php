@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequestCreateRequest;
 use App\Http\Resources\UserRequestResource;
 use App\Models\UserRequest;
 use App\Services\AuthService;
 
 class UserRequestController extends Controller
 {
-    public function create(AuthService $authService)
+    public function create(UserRequestCreateRequest $userRequestCreateRequest, AuthService $authService)
     {
-        $request = request('request');
+        $request = $userRequestCreateRequest->validated('request');
 
         $user = $authService->getCurrentUser();
         UserRequest::create([

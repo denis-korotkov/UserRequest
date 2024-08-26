@@ -17,7 +17,8 @@ class UserRole extends Model
         'role',
     ];
 
-    public function isAdmin(){
+    public function isAdmin(): bool
+    {
         return $this->role == self::ROLE_ADMIN;
     }
 }
