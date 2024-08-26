@@ -6,7 +6,6 @@ use Tests\TestCase;
 
 class AuthTest extends TestCase
 {
-
     public function testCreateToken(): void
     {
         $response = $this->postJson('api/auth/login', ['email' => 'test@example.com', 'password' => '123']);
