@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -53,8 +53,8 @@ class User extends AuthUser implements JWTSubject
         return $this->hasMany(UserRequest::class);
     }
 
-    public function role(): HasOne
+    public function role(): BelongsTo
     {
-        return $this->hasOne(UserRole::class);
+        return $this->belongsTo(UserRole::class, 'user_role_id');
     }
 }

@@ -1,7 +1,11 @@
 <?php
 
+namespace App\Services;
+
+use App\Dto\UserDto;
 use App\Models\User;
 use App\Models\UserRole;
+use App\Repositories\UserRoleRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
 
 class AuthService
@@ -29,11 +33,18 @@ class AuthService
         return $this->isUserAdmin() ?
             $this->userRoleRepository->getByRole(UserRole::ROLE_ADMIN) :
             $this->userRoleRepository->getByRole(UserRole::ROLE_USER);
-}
+    }
 
-    private function isUserAdmin(): bool
+    public function isUserAdmin(User $user = null): bool
     {
-        return auth()->user && auth()->user->userRole->isAdmin();
+        if (is_null($user)) $user = $this->getCurrentUser();
+
+        return $user && $user->role->isAdmin();
+    }
+
+    public function getCurrentUser(): User|null
+    {
+        return auth()->user();
     }
 
 }

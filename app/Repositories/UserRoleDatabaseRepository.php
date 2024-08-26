@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Repositories;
+
 use App\Models\UserRole;
 use Illuminate\Support\Collection;
 
@@ -10,7 +12,8 @@ class UserRoleDatabaseRepository implements UserRoleRepositoryInterface
         return UserRole::query()->get();
     }
 
-    public function getByRole(string $role){
+    public function getByRole(string $role): UserRole
+    {
         return $this->getAll()->firstWhere('role', '=', $role);
     }
 }

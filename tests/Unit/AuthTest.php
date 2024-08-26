@@ -9,7 +9,7 @@ class AuthTest extends TestCase
 
     public function testCreateToken(): void
     {
-        $response = $this->postJson('api/auth/login', ['email' => 'd_k_s_19995@mail.ru', 'password' => '123']);
+        $response = $this->postJson('api/auth/login', ['email' => 'test@example.com', 'password' => '123']);
 
         $response->assertStatus(200);
         $response->assertJsonStructure([
@@ -23,8 +23,8 @@ class AuthTest extends TestCase
 
     public function testCreateTokenFail(): void
     {
-        $response = $this->postJson('api/auth/login', ['email' => 'd_k_s_19995@mail.ru']);
+        $response = $this->postJson('api/auth/login', ['email' => 'test@example.com']);
 
-        $response->assertStatus(500);
+        $response->assertStatus(422);
     }
 }

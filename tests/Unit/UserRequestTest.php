@@ -8,7 +8,7 @@ class UserRequestTest extends TestCase
 {
     public function testCreateRequestWithAuth(): void
     {
-        $response = $this->postJson('api/auth/login', ['email' => 'd_k_s_19995@mail.ru', 'password' => '123']);
+        $response = $this->postJson('api/auth/login', ['email' => 'test@example.com', 'password' => '123']);
         $response->assertStatus(200);
         $token = json_decode($response->getContent(), 1);
 
@@ -30,7 +30,7 @@ class UserRequestTest extends TestCase
 
     public function testGetRequestsWithAuth(): void
     {
-        $response = $this->postJson('api/auth/login', ['email' => 'd_k_s_19995@mail.ru', 'password' => '123']);
+        $response = $this->postJson('api/auth/login', ['email' => 'test@example.com', 'password' => '123']);
         $response->assertStatus(200);
         $token = json_decode($response->getContent(), 1);
 
