@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
 use App\Services\AuthService;
+use Tymon\JWTAuth\Factory;
 
 /**
  * @OA\Get(
@@ -68,10 +69,13 @@ class AuthController extends Controller
 
     protected function respondWithToken($token)
     {
+        /** @var Factory $factory */
+        $factory = auth()->factory(User::class);
+
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory(User::class)->getTTL() * 60
+            'expires_in' => $factory->getTTL() * 60
         ]);
     }
 }
