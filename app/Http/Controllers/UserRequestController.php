@@ -16,7 +16,7 @@ class UserRequestController extends Controller
         $user = $authService->getCurrentUser();
         UserRequest::create([
             'request' => $request,
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         return response('created', 200);

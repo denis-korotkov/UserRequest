@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(UserRoleCachedRepository::class, function(){
+        $this->app->bind(UserRoleCachedRepository::class, function () {
             return new UserRoleCachedRepository(
                 config('app_service.cached_repository_cache_time'),
                 config('app_service.cached_repository_cache_prefix'),
@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->bind(UserRoleRepositoryInterface::class, function(){
+        $this->app->bind(UserRoleRepositoryInterface::class, function () {
             $userRoleRepositoryConfig = config('app_service.user_role_repository');
             $class = 'App\Repositories\UserRole' . ucfirst($userRoleRepositoryConfig) . 'Repository';
 

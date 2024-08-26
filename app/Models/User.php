@@ -7,13 +7,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * @property int $id
  * @property string $name
  * @property string $email
-*/
+ *
+ * @property UserRole role
+ * @property Collection requests
+ */
 class User extends AuthUser implements JWTSubject
 {
     use HasFactory, Notifiable;

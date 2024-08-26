@@ -20,7 +20,6 @@ namespace App\Http\Controllers;
  *      url=L5_SWAGGER_CONST_HOST,
  *      description="Demo API Server"
  * )
-
  *
  * @OA\Tag(
  *     name="Projects",

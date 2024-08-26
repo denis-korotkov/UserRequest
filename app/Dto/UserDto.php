@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Dto;
 
 use Illuminate\Support\Arr;
@@ -28,6 +29,7 @@ class UserDto
     {
         return $this->password;
     }
+
     private function __construct(
         private readonly string $name,
         private readonly string $email,

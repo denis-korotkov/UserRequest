@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Scope;
 
 class UserScope implements Scope
 {
-    public function __construct(protected readonly AuthService $authService){
+    public function __construct(protected readonly AuthService $authService)
+    {
 
     }
 

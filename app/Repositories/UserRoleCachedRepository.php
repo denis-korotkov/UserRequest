@@ -16,7 +16,7 @@ class UserRoleCachedRepository implements UserRoleRepositoryInterface
      * @param UserRoleRepositoryInterface $userRoleRepository
      */
     public function __construct(
-        protected readonly int                      $cacheTimeSeconds,
+        protected readonly int                         $cacheTimeSeconds,
         protected readonly string                      $cachePrefix,
         protected readonly UserRoleRepositoryInterface $userRoleRepository
 
