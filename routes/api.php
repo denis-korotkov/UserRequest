@@ -12,4 +12,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('me', [AuthController::class, 'me']);
 });
 
-Route::post('user-request', [UserRequestController::class, 'create'])->middleware('auth');
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('user-request', [UserRequestController::class, 'create']);
+    Route::get('user-request', [UserRequestController::class, 'show']);
+});

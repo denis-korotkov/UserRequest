@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserRequest;
 use Illuminate\Support\Facades\Auth;
+use UserRequestResource;
 
 class UserRequestController extends Controller
 {
@@ -23,6 +24,6 @@ class UserRequestController extends Controller
 
     public function show()
     {
-        return view('request');
+        return new UserRequestResource(UserRequest::paginate());
     }
 }
