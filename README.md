@@ -26,7 +26,7 @@ UserRequest - api сервис для приёма заявок пользова
 # Требования
 
 * Локальный `Composer` для установки `Laravel sail`
-* Локальные `Docker compose` 
+* Локальный `Docker compose`
 
 # Установка
 
